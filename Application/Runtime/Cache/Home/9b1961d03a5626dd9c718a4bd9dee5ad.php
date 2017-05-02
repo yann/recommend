@@ -1,9 +1,57 @@
 <?php if (!defined('THINK_PATH')) exit();?>﻿
+<html>
+<head>
+    <title>时光电影推荐网</title>
+    <link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/Public/bootstrap/js/bootstrap.js" rel="stylesheet"/>
+    <link href="/Public/html/css/index.css" rel="stylesheet">
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">时光电影推荐网</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <form class="navbar-form navbar-left" action="/index.php/Home/Index/search" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="搜索想看的电影" name="movie">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/index.php/Home/Function/register">注册</a></li>
+                <li><a href="/index.php/Home/Function/login">登陆</a></li>
+                <!--  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                      </ul>
+                  </li>-->
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<hr>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>jQuery用户注册表单验证代码</title>
+<title>用户注册表单验证</title>
 <link href="/Public/html/css/jq22.css" rel="stylesheet" type="text/css" />
   <script language='javascript' src="/Public/html/js/jq22.js"></script>
 </head>
@@ -14,7 +62,7 @@
     <div style="position:fixed;color:red;margin:70px 0 0 450px;font-size:16px;Z-index:100;display:block;" id="hint"></div>
     <div class='box_title'>
       <div class='text_content'>
-        <h1>jQuery用户注册表单验证代码</h1>
+        <h1>用户注册表单验证</h1>
       </div>
     </div>
     <div class='box_main'>
@@ -22,15 +70,7 @@
         <form id="form" action="/index.php/Home/Function/doregister" method="post" onSubmit="return check();">
           <div id="form_submit" class="form_submit">
             <div class="fieldset">
-              <div class="field-group">
-                <label class="required title">手机号码</label>
-                <span class="control-group" id="mobile_input">
-                <div class="input_add_long_background">
-                  <input class="register_input" type="text" id="mobile" name="mobile" maxLength="11" value="" onblur="__changeUserName('mobile');">
-                </div>
-                </span>
-                <label class="tips">仅用于发送服务开通与到期提醒以及紧急故障方便联系到您，绝对保密</label>
-              </div>
+
               <div class="field-group">
                 <label class="required title">邮箱</label>
                 <span class="control-group" id="email_input">
@@ -41,13 +81,23 @@
                 <label class="tips">请输入您常用的邮箱</label>
               </div>
               <div class="field-group">
-                <label class="required title">登录账号</label>
-                <span class="control-group" style="line-height:28px;">
-
-                <input id="way_email" type="radio" value="email" name="username" onclick="__changeUserName('email');">
-                邮箱 </span>
-                <label class="tips" style="margin-bottom:5px;" id="tooltext1">请选择以哪个作为您的登录账号</label>
+                <label class="required title">昵称</label>
+                <span class="control-group" id="username_input">
+                <div class="input_add_long_background">
+                  <input class="register_input" type="text" id="username" name="email" maxLength="50" value="" onblur="__changeUserName('email');">
+                </div>
+                </span>
+                <label class="tips">请输入您的昵称</label>
               </div>
+           <!--   <div class="field-group">
+                <label class="required title">第一次密码</label>
+                <span class="control-group" id="password1_input">
+                <div class="input_add_long_background">
+                  <input class="register_input" type="password" id="password1" name="password1" maxLength="20" value="" onblur="checkPwd1(this.value);" />
+                </div>
+                </span>
+                <label class="tips">请使用6~20个英文字母（区分大小写）、符号或数字</label>
+              </div>-->
               <div class="field-group">
                 <label class="required title">设置密码</label>
                 <span class="control-group" id="password1_input">

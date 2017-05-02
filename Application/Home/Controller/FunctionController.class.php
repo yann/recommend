@@ -14,4 +14,8 @@ class FunctionController extends Controller{
     public function register(){
         $this->display();
     }
+    public function doregister(){
+        $data= $_POST;
+        print_r($data);
+    }
 }
