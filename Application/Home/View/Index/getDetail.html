@@ -1,0 +1,76 @@
+<include file="./Public/html/header.html"/>
+
+<div style="width:1000px;  height:300px ;margin-left: 100px">
+    <volist name="detail" id="vo">
+    <div style="float:left ;  width:50%;  height:100%;text-align: center">
+            <div id="<{$vo.id }>" style="width: 200px;margin-left: 200px;margin-top: 30px">
+                <img src="<{$vo.cover}>" height="210" width="160">
+                <div >
+                    <strong style="color: #e09015">评分：<{$vo.rate}></strong>
+                </div>
+            </div>
+    </div>
+    <div  style="float:left ;  width:50%; height:100%;margin-top: 30px">
+        <div id="info">
+            <h1>
+                <span><{$vo.title}></span>
+                <span class="year">(2017)</span>
+            </h1>
+            <div >
+                    <span class="p1">
+                        导演:
+                        <span class="attrs">
+                            <{$vo.director}>
+                        </span>
+                    </span>
+
+                <br/>
+                <span class="actor">
+                        <span class="p1">主演</span>
+                        <span class="attrs">
+                            <{$vo.actor}>
+                        </span>
+                    </span>
+                <br/>
+                <span class="p1">
+                        类型:
+                        <span class="attrs">
+                            <{$vo.style}>
+                        </span>
+                    </span>
+                <br/>
+                <span class="p1">
+                        国家:
+                        <span class="attrs">
+                            <{$vo.country}>
+                        </span>
+                    </span>
+                <br/>
+
+                <span class="p1">
+                        上映时间:
+                        <span class="attrs">
+                            <{$vo.time}>
+                        </span>
+                    </span>
+                <br/>
+            </div>
+        </div>
+    </div>
+
+        <div>
+        <div id="brief">
+            <p>
+                <empty name="brief">
+                    暂无简介。。。
+                    <else/>
+                    <{$brief}>
+                </empty>
+
+            </p>
+        </div>
+        </div>
+    </volist>
+</div>
+</div>
+<include file="./Public/html/footer.html"/>

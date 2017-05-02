@@ -1,0 +1,21 @@
+<include file="./Public/html/header.html"/>
+<div class="center-block">
+    <div class="index_content">
+        <div class="index_content_movie">
+        <volist name="data" id="vo">
+            <div class="index_content_movie_pic" id="<{$vo.id }>">
+                <a href="/index.php/Home/Index/getDetail?id=<{$vo.id }>">
+                <img src="<{$vo.cover}>" height="210" width="160">
+                <div style="text-align:center">
+                    <{$vo.title }>
+
+                    <strong style="color: #e09015"><{$vo.rate}></strong>
+                </div>
+                </a>
+            </div>
+
+        </volist>
+        </div>
+    </div>
+</div>
+<include file="./Public/html/footer.html"/>
