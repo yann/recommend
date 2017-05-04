@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>时光电影推荐网</title>
+    <script type="text/javascript" src="/Public/html/js/jquery2.0.min.js"></script>
     <link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/Public/bootstrap/js/bootstrap.js" rel="stylesheet"/>
+    <script src="/Public/bootstrap/js/bootstrap.js"></script>
     <link href="/Public/html/css/index.css" rel="stylesheet">
+
 <body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -56,13 +58,12 @@
 </head>
 <body>
 <div id="home">
-    <form id="login" class="current1" method="post" action="/login/check">
-
+    <form id="login" class="current1" method="post" action="/index.php/Home/Function/dologin">
         <input type="hidden" name="token" value="<?php echo ($token); ?>">
         <h3>用户登入</h3>
         <img class="avator" src="/Public/html/image/avatar.jpg" width="96" height="96"/>
        <input type="text" name="username" style="width:215px;" placeholder="邮箱/名称" />
-       <input type="password" name="password"  placeholder="邮箱/名称" style="width:215px;"/>
+       <input type="password" name="password"  placeholder="密码" style="width:215px;"/>
         <!--<button type="button">登入</button>-->
         <input type="submit" id="button" value="登录" style="width: 215px">
     </form>

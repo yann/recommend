@@ -1,13 +1,12 @@
-﻿<include file="./Public/html/header1.html"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<include file="./Public/html/header1.html" xmlns="http://www.w3.org/1999/html"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>用户注册表单验证</title>
 <link href="/Public/html/css/jq22.css" rel="stylesheet" type="text/css" />
-  <script language='javascript' src="/Public/html/js/jq22.js"></script>
+  <link href="/Public/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+   <script language='javascript' src="/Public/html/js/jq22.js"></script>
+  <script type="text/javascript" src="/Public/html/js/bootstrap-select.js"></script>
+  <link rel="stylesheet" type="text/css" href="/Public/html/css/bootstrap-select.css">
 </head>
-<body>
 <div class='body_main'> 
   <!-- start main content -->
   <div class='index_box' style='margin-top:20px;'>
@@ -23,6 +22,18 @@
           <div id="form_submit" class="form_submit">
             <div class="fieldset">
 
+
+
+              <div class="field-group">
+                <label class="required title">性别</label>
+                <span class="control-group" style="line-height:28px;">
+                <input id="way_mobile" type="radio" value="1" name="sex" checked >
+                男
+                <input id="way_email" type="radio" value="0" name="sex">
+                女 </span>
+                <label class="tips" style="margin-bottom:5px;" id="tooltext1">请选择您的性别</label>
+              </div>
+
               <div class="field-group">
                 <label class="required title">邮箱</label>
                 <span class="control-group" id="email_input">
@@ -32,135 +43,131 @@
                 </span>
                 <label class="tips">请输入您常用的邮箱</label>
               </div>
+
               <div class="field-group">
                 <label class="required title">昵称</label>
                 <span class="control-group" id="username_input">
                 <div class="input_add_long_background">
-                  <input class="register_input" type="text" id="username" name="email" maxLength="50" value="" onblur="__changeUserName('email');">
+                  <input class="register_input" type="text" id="username" name="username" maxLength="50" value="">
                 </div>
                 </span>
                 <label class="tips">请输入您的昵称</label>
               </div>
-           <!--   <div class="field-group">
-                <label class="required title">第一次密码</label>
-                <span class="control-group" id="password1_input">
+
+
+              <div class="field-group">
+                <label class="required title">年龄</label>
+                <span class="control-group" id="age_input">
                 <div class="input_add_long_background">
-                  <input class="register_input" type="password" id="password1" name="password1" maxLength="20" value="" onblur="checkPwd1(this.value);" />
+                  <input class="register_input" autocomplete="off" type="text" id="age" name="age" maxLength="50" value="">
                 </div>
                 </span>
-                <label class="tips">请使用6~20个英文字母（区分大小写）、符号或数字</label>
-              </div>-->
+                <label class="tips">请输入您的年龄</label>
+              </div>
+
               <div class="field-group">
                 <label class="required title">设置密码</label>
                 <span class="control-group" id="password1_input">
                 <div class="input_add_long_background">
-                  <input class="register_input" type="password" id="password1" name="password1" maxLength="20" value="" onblur="checkPwd1(this.value);" />
+                  <input class="register_input"  autocomplete="off" type="password" id="password1" name="password" maxLength="20" value="" onblur="checkPwd1(this.value);" />
                 </div>
                 </span>
                 <label class="tips">请使用6~20个英文字母（区分大小写）、符号或数字</label>
               </div>
-      <!--        <div class="field-group">
-                <label class="required title">短信验证码</label>
-                <span class="control-group" id="code_input">
-                <div class="input_add_background" style="margin-right:15px;">
-                  <input class="register_input_ot" type="text" id="code" name="code" max_length="6" value="" onblur="checkAuthCode(this.value);">
-                </div>
-                </span>
-                <label class="tips">若尝试多次仍无法接收到短信验证码，请您联系在线客服帮您开通账号</label>
-              </div>-->
+
+
+
+              <div class="field-group" >
+                  <label class="required title">选择标签</label>
+                  <span class="control-group" >
+                  <label for="tags"></label>
+                <select  id="tags" class="selectpicker" multiple data-max-options="3" name="tags[]" >
+                 <volist name="tags" id="vo">
+                    <option name="tag"  value="<{$vo.tag}>" ><{$vo.tag}></option>
+                  </volist>
+                <!--  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>-->
+                </select>
+              </span>
+                <label class="tips">请选择3个喜欢的标签</label>
+              </div>
+
             </div>
           </div>
           <div id="div_submit" class="div_submit">
             <div class='div_submit_button'>
-              <a href="/index.php/Home/Function/login" id="login_button">登录</a>
-              <input id="submit" type="submit" value="注册" class='button_button disabled'>
+             <!-- <a href="/index.php/Home/Function/login" id="login_button">登录</a>-->
+              <input id="submit" type="submit" onsubmit="check()"  value="注册" class='button_button disabled'>
             </div>
           </div>
         </form>
       </div>
-<script type="text/javascript">
-function __changeUserName(of){
-  var username=$('#'+of).val();
-  if(of=='email'){
-	  if (username.search(/^[\w\.+-]+@[\w\.+-]+$/) == -1) {
-			showTooltips('email_input','请输入正确的Email地址');
-			return;
-	}					
-  }
-  else{
-	  if(username=='' || !isMobilePhone(username)) {
-		  showTooltips('mobile_input','请输入正确的手机号码');
-		  return;
-	  }
-  }
-}
-function checkPwd1(pwd1) {
-	if (pwd1.search(/^.{6,20}$/) == -1) {
-		showTooltips('password1_input','密码为空或位数太少');
-	}else {
-		hideTooltips('password1_input');
-	}
-}	
 
-function checkEmail(email) {
-	if (email.search(/^.+@.+$/) == -1) {
-		showTooltips('email_input','邮箱格式不正确');
-	}else {
-		hideTooltips('email_input');
-	}
-}
+      <script type="text/javascript">
+          $(window).on('load', function () {
+              $('.selectpicker').selectpicker({
+                    'selectedText': 'cat'
 
-function checkAuthCode(authcode) {
-	if (authcode == '' || authcode.length != 6) {
-		showTooltips('code_input','验证码不正确');
-	}else {
-		hideTooltips('code_input');
- }     
-}
+              });
 
-function check() {
-	hideAllTooltips();
-	var ckh_result = true;
-	if ($('#email').val() == '') {
-	showTooltips('email_input','邮箱不能为空');
-	ckh_result = false;
-  }
-  if ($('#password1').val() == '') {
-	showTooltips('password1_input','密码不能为空');
-	ckh_result = false;
-  }      
-  if($('#mobile').val()=='' || !isMobilePhone($('#mobile').val())) {            
-	  showTooltips('mobile_input','手机号码不正确');
-	  ckh_result = false;
-  }
-  if ($('#code').val() == '' || $('#code').val().length !=6) {
-	showTooltips('code_input','验证码不正确');
-	ckh_result = false;
-  }
-  if ($('#verify').attr('checked') == false){
-	showTooltips('checkbox_input','对不起，您不同意Webluker的《使用协议》无法注册');
-	ckh_result = false;
-  }
-  return ckh_result;
-}
-function checkMobilePhone(telphone) {
-	if(telphone=='' || !isMobilePhone(telphone)) {
-	showTooltips('mobile_input','请输入正确的手机号码');
-  }else{
-	hideTooltips('mobile_input');
-  }
-}
-function isMobilePhone(value) {
-if(value.search(/^(\+\d{2,3})?\d{11}$/) == -1)
-return false;
-else
-return true;
-} 
-</script> 
-    </div>
-    <div class='box_bottom'></div>
-  </div>
-</div>
+          });
 
-</body>
-</html>
+      </script>
+
+      <script type="text/javascript">
+      function check() {
+          hideAllTooltips();
+          var ckh_result = true;
+          if ($('#email').val() == '') {
+            showTooltips('email_input', '邮箱不能为空');
+            ckh_result = false;
+             return false;
+             }
+         if ($('#password1').val() == '') {
+              showTooltips('password1_input', '密码不能为空');
+              ckh_result = false;
+              return false;
+           }
+          if ($('#username').val() == '') {
+              showTooltips('username_input', '昵称不能为空');
+              ckh_result = false;
+              return false;
+          }
+          if ($('#age').val() == '') {
+              showTooltips('age_input', '年龄不能为空');
+              ckh_result = false;
+              return false;
+          }
+
+             var email = $('#email').val();
+          if (email.search(/^[\w\.+-]+@[\w\.+-]+$/) == -1) {
+              showTooltips('email_input', '请输入正确的Email地址');
+              return false;
+          }
+
+             var pwd1 = $("#password1").val();
+                if (pwd1.search(/^.{6,20}$/) == -1){
+          showTooltips('password1_input', '密码为空或位数太少');
+          return false;
+         }
+
+          var age = $("#age").val();
+         if (age.search(/^\d{2}$/) == -1){
+             showTooltips('age_input', '年龄不正确');
+             return false;
+         }
+          var tags = $("#tags").val();
+
+      }
+
+
+
+
+      </script>
+          </div>
+          <div class='box_bottom'></div>
+        </div>
+      </div>
+
+      <include file="./Public/html/footer.html"/>

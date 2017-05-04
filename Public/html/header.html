@@ -75,8 +75,8 @@
             <a class="btn btn-info" href="/index.php/Home/Index/tags?cat=文艺">
                 <input type="checkbox" autocomplete="off">文艺
             </a>
-            <a class="btn btn-info" href="/index.php/Home/Index/tags?cat=情色">
-                <input type="checkbox" autocomplete="off">情色
+            <a class="btn btn-info" href="/index.php/Home/Index/tags?cat=战争">
+                <input type="checkbox" autocomplete="off">战争
             </a>
             <a class="btn btn-Success">
             <input type="checkbox" autocomplete="off"> 登陆更多推荐
