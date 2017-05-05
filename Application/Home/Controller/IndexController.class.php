@@ -2,11 +2,12 @@
 namespace Home\Controller;
 use Think\Controller;
 use Home\Model;
+import('ORG.Util.Page');
+use Think\Page;
 class IndexController extends Controller
 {
     public function index()
     {
-        $username = session('username');
         $result = array();
         $movie_model = new Model\MovieModel();
         $res = $movie_model->getNewMovieBrief();
@@ -17,29 +18,34 @@ class IndexController extends Controller
             $temp['cover'] = "/Public/html/img/".basename($value['cover']);
             $result[] = $temp;
         }
+        $username = session('username');
         $this->assign('username',$username);
-        $this->assign("data",$result);
-         $this->display();
-    }
+            $this->assign("data", $result);
+            $this->display();
 
+    }
     /**
      *
      * 获得详细信息
      */
-    public function getdetail(){
+    public function getdetail()
+    {
         $movie_model = new Model\MovieModel();
         $movie_brief_model = new Model\MovieBriefModel();
-        if (empty($_GET['id'])){
+        $username = session('username');
+        $this->assign('username',$username);
+            if (empty($_GET['id'])) {
+                $this->error("请选择详细的电影", '/');
+            } else {
+                $res = $movie_model->getDetailByid($_GET['id']);
+                $res[0]['time'] = date('Y-m-d',strtotime($res[0]['time']));
+                $this->assign("detail", $res);
+                $douban_id = $movie_model->getDoubanIdById($_GET['id'])[0]['douban_id'];
+                $brief = $movie_brief_model->getMovieBriefById($douban_id)[0]['brief'];
 
-        }else{
-           $res = $movie_model->getDetailByid($_GET['id']);
-           $this->assign("detail",$res);
-           $douban_id = $movie_model->getDoubanIdById($_GET['id'])[0]['douban_id'];
-           $brief = $movie_brief_model->getMovieBriefById($douban_id)[0]['brief'];
-           $this->assign("brief",$brief);
+                $this->assign("brief", $brief);
+            $this->display();
         }
-
-        $this->display();
     }
 
     /*
@@ -47,13 +53,22 @@ class IndexController extends Controller
      * 标签栏处理
      * */
     public function tags(){
+        $username = session('username');
+        $this->assign('username',$username);
         $cat = $_GET['cat'];
         if (empty($cat)){
             $this->error('error',"/");
         }
         $result = array();
         $movie_model = new Model\MovieModel();
-        $res = $movie_model->getMovieBrief($cat);
+        $count = $movie_model->getCount($cat);
+        $Page = new Page($count,10);
+
+      //  $res = $movie_model->getMovieBrief($cat);
+        $User = M('Movie');
+        $category = "'".$cat."'" ;
+        $res = $User->where("category=$category")->limit($Page->firstRow.','.$Page->listRows)->select();
+       
         foreach ($res as $key => $value){
             $temp['id'] = $value['id'];
             $temp['title'] = $value['title'];
@@ -61,11 +76,15 @@ class IndexController extends Controller
             $temp['cover'] = "/Public/html/img/".basename($value['cover']);
             $result[] = $temp;
         }
+         $show = $Page->show();
+        $this->assign("page",$show);
         $this->assign("data",$result);
         $this->display('index');
     }
 
     public function search(){
+        $username = session('username');
+        $this->assign('username',$username);
         $word = $_POST['movie'];
         if (empty($word)){
             $this->error('error',"/");

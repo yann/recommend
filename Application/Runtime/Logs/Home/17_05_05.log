@@ -1,0 +1,158 @@
+[ 2017-05-05T08:56:09+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T08:56:14+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T09:40:22+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T09:43:12+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T09:43:14+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T09:44:13+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T10:45:51+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T10:46:48+08:00 ] 127.0.0.1 /index.php/Home/User/chage
+ERR: 非法操作:chage
+
+[ 2017-05-05T10:49:02+08:00 ] 127.0.0.1 /index.php/Home/User/chage
+ERR: 非法操作:chage
+
+[ 2017-05-05T10:49:05+08:00 ] 127.0.0.1 /index.php/Home/User/chage
+ERR: 非法操作:chage
+
+[ 2017-05-05T10:49:08+08:00 ] 127.0.0.1 /index.php/Home/User/chage
+ERR: 非法操作:chage
+
+[ 2017-05-05T10:49:25+08:00 ] 127.0.0.1 /index.php/Home/User/chage
+ERR: 非法操作:chage
+
+[ 2017-05-05T11:15:35+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update `user` set `username` = '杨月',password= '123456',age = 18,sex = 1,tag ='Array' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:18:24+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sex = 1,tag ='文艺,恐怖,爱情' WHERE  email = '312910815@qq.com'' at line 1
+ [ SQL语句 ] : update `user` set `username` = '杨月',password= '123456',age = ,sex = 1,tag ='文艺,恐怖,爱情' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:19:18+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sex = 1,tag ='情色,文艺,悬疑' WHERE  email = '312910815@qq.com'' at line 1
+ [ SQL语句 ] : update `user` set `username` = '杨月',password= '123456',age = ,sex = 1,tag ='情色,文艺,悬疑' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:19:39+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update `user` set `username` = '杨月',password= '123456',age = 18,sex = 1,tag ='情色,文艺,悬疑' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:19:49+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update `user` set `username` = '杨月',password= '123456',age = 18,sex = 1,tag ='青春,励志,犯罪' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:20:25+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update `user` set `username` = '杨月',password= '123456',age = 18,sex = 1,tag ='成长,黑色幽默,战争' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:21:36+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 18,sex = 1,tag ='成长,黑色幽默,情色' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:21:58+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 18,sex = 1,tag ='成长,黑色幽默,情色' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:22:05+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 18,sex = 1,tag ='成长,黑色幽默,冷门佳片' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:26:56+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 19,sex = 1,tag ='成长,冷门佳片,科幻' WHERE  email = '312910815@qq.com'
+
+[ 2017-05-05T11:36:09+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1054:Unknown column '杨月' in 'where clause'
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 21,sex = 1,tag ='冷门佳片,悬疑,爱情' WHERE id = 杨月
+
+[ 2017-05-05T11:43:11+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 19,sex = 1,tag =' 成长,冷门佳片,科幻' WHERE id = 12
+
+[ 2017-05-05T11:44:28+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = 12' at line 1
+ [ SQL语句 ] : UPDATE `movie` SET  WHERE `id` = 12
+
+[ 2017-05-05T11:44:47+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = 12' at line 1
+ [ SQL语句 ] : UPDATE `movie` SET  WHERE `id` = 12
+
+[ 2017-05-05T11:45:56+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = 12' at line 1
+ [ SQL语句 ] : UPDATE `movie` SET  WHERE `id` = 12
+
+[ 2017-05-05T11:46:26+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 25,sex = 1,tag ='' WHERE id = 12
+
+[ 2017-05-05T11:48:08+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 25,sex = 1,tag ='感人,文艺,科幻' WHERE id = 12
+
+[ 2017-05-05T11:50:36+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '科幻 WHERE id = 12' at line 1
+ [ SQL语句 ] : update user set username = 杨月,password= 123456,age = 29,sex = 1,tag = 感人,文艺,科幻 WHERE id = 12
+
+[ 2017-05-05T16:27:47+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 25,sex = 1,tag ='战争,文艺,爱情' WHERE id = 12
+
+[ 2017-05-05T16:28:45+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = 12' at line 1
+ [ SQL语句 ] : UPDATE `movie` SET  WHERE `id` = 12
+
+[ 2017-05-05T16:36:14+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 52,sex = 1,tag ='感人,恐怖,爱情' WHERE id = 
+
+[ 2017-05-05T16:37:07+08:00 ] 127.0.0.1 /index.php/Home/User/change
+ERR: :
+ [ SQL语句 ] : update user set username = '杨月',password= '123456',age = 52,sex = 1,tag ='感人,恐怖,爱情' WHERE id = 12
+
+[ 2017-05-05T16:40:08+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T16:40:12+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T16:40:26+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T16:45:29+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T16:46:36+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T16:46:40+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-05T19:03:28+08:00 ] 127.0.0.1 /index.php/Home/Index/tags?cat=%E7%BB%8F%E5%85%B8
+ERR: 1054:Unknown column '经典' in 'where clause'
+ [ SQL语句 ] : select count(*) num from movie WHERE category = 经典
+
+[ 2017-05-05T19:03:57+08:00 ] 127.0.0.1 /index.php/Home/Index/tags?cat=%E7%BB%8F%E5%85%B8
+ERR: 1054:Unknown column 'category' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `user` WHERE ( category=经典 ) LIMIT 0,10  
+
+[ 2017-05-05T19:05:03+08:00 ] 127.0.0.1 /index.php/Home/Index/tags?cat=%E7%BB%8F%E5%85%B8
+ERR: 1054:Unknown column 'category' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `user` WHERE ( category='经典' ) LIMIT 0,10  
+
+[ 2017-05-05T19:05:05+08:00 ] 127.0.0.1 /index.php/Home/Index/tags?cat=%E7%BB%8F%E5%85%B8
+ERR: 1054:Unknown column 'category' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `user` WHERE ( category='经典' ) LIMIT 0,10  
+

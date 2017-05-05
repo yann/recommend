@@ -29,18 +29,13 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/index.php/Home/Function/register">注册</a></li>
-                <li><a href="/index.php/Home/Function/login">登陆</a></li>
-              <!--  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>-->
+                <?php if(empty($username)): ?><li><a href="/index.php/Home/Function/register">注册</a></li>
+                    <li><a href="/index.php/Home/Function/login">登陆</a></li>
+                    <?php else: ?>
+                    <li><a href="/index.php/Home/Recommend">精心推荐</a></li>
+                    <li><a href="/index.php/Home/User/index">个人中心</a></li>
+                    <li><a>你好,<?php echo ($username); ?></a></li><?php endif; ?>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -48,7 +43,7 @@
 
     <div style="margin-left: 170px">
         <div class="btn-group" data-toggle="buttons">
-            <a class="btn btn-info active" href="/">
+            <a class="btn btn-info active" href="/index.php/Home/Index/tags?cat=最新">
                 <input type="checkbox" autocomplete="off" checked> 最新
             </a>
             <a class="btn btn-info" href="/index.php/Home/Index/tags?cat=热门">
@@ -78,8 +73,8 @@
             <a class="btn btn-info" href="/index.php/Home/Index/tags?cat=战争">
                 <input type="checkbox" autocomplete="off">战争
             </a>
-            <a class="btn btn-Success">
-            <input type="checkbox" autocomplete="off"> 登陆更多推荐
+            <a class="btn btn-Success" href="/index.php/Home/Recommend">
+            <input type="checkbox" autocomplete="off"> 登陆后为您精心推荐
         </a>
 
         </div>

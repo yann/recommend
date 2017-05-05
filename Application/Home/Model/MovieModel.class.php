@@ -15,6 +15,13 @@
                return $res;
             }
 
+            public function getCount($cat){
+                $cat = "'".$cat."'";
+                $res = $this->query("select count(*) num from movie WHERE category = $cat");
+                return $res[0]['num'];
+            }
+
+
      /**
       * @return mixed
       *  获得最新的电影的简介

@@ -5,17 +5,19 @@
         <volist name="data" id="vo">
             <div class="index_content_movie_pic" id="<{$vo.id }>">
                 <a href="/index.php/Home/Index/getDetail?id=<{$vo.id }>">
-                <img src="<{$vo.cover}>" height="210" width="160">
+                <img src="<{$vo.cover}>" height="190" width="160">
                 <div style="text-align:center">
                     <{$vo.title }>
-
                     <strong style="color: #e09015"><{$vo.rate}></strong>
                 </div>
                 </a>
             </div>
-
         </volist>
         </div>
     </div>
+</div>
+<hr>
+<div class="Pagination">
+    <{$page}>
 </div>
 <include file="./Public/html/footer.html"/>

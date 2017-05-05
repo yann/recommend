@@ -12,7 +12,6 @@ class FunctionController extends Controller{
     public function login(){
         $this->display();
     }
-
     public function dologin(){
        $data = $_POST;
        $result['username'] = $data['username'];
@@ -21,6 +20,7 @@ class FunctionController extends Controller{
         $login =   $user_model->login($result);
         if ($login){
             session('username',$login);
+            session('password',$result['password']);
             $this->success('登录成功,正在为你跳转', '/',3);
         }else{
             $this->success('用户名或者密码错误,请重新输入', '/index.php/Home/Function/login',3);

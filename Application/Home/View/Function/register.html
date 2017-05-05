@@ -4,8 +4,8 @@
 <link href="/Public/html/css/jq22.css" rel="stylesheet" type="text/css" />
   <link href="/Public/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
    <script language='javascript' src="/Public/html/js/jq22.js"></script>
-  <script type="text/javascript" src="/Public/html/js/bootstrap-select.js"></script>
-  <link rel="stylesheet" type="text/css" href="/Public/html/css/bootstrap-select.css">
+  <script type="text/javascript" src="/Public/html/dist/js/bootstrap-select.js"></script>
+  <link rel="stylesheet" type="text/css" href="/Public/html/dist/css/bootstrap-select.css">
 </head>
 <div class='body_main'> 
   <!-- start main content -->
@@ -75,13 +75,11 @@
                 <label class="tips">请使用6~20个英文字母（区分大小写）、符号或数字</label>
               </div>
 
-
-
               <div class="field-group" >
                   <label class="required title">选择标签</label>
                   <span class="control-group" >
                   <label for="tags"></label>
-                <select  id="tags" class="selectpicker" multiple data-max-options="3" name="tags[]" >
+                <select  id="tags" class="selectpicker" multiple data-max-options ="3" name="tags[]" >
                  <volist name="tags" id="vo">
                     <option name="tag"  value="<{$vo.tag}>" ><{$vo.tag}></option>
                   </volist>

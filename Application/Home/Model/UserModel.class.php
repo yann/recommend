@@ -47,8 +47,29 @@ use Think\Model;
             }else{
                 return false;
             }
+        }
 
+        public function getUserInfo($username,$password){
+            $username = "'".$username."'";
+            $password = "'".$password."'";
+            $res = $this->query("select * from USER where username = $username AND password =$password");
+            return $res;
+        }
+
+        public function update($data){
+       $username = "'".$data['username']."'";
+            $password = "'".$data['password']."'";
+            $email = "'".$data['email']."'";
+            $id = $data['id'];
+            $age = $data['age'];
+            $sex = $data['sex'];
+            $tag = "'".$data['tag']."'";
+            $sql = "update user set username = $username,password= $password,age = $age,sex = $sex,tag =$tag WHERE id = $id";
+            $res = $this->execute($sql);
+            return $res;
 
         }
+
+
 
     }

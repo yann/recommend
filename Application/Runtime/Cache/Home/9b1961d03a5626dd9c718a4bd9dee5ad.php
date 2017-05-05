@@ -31,18 +31,12 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/index.php/Home/Function/register">注册</a></li>
-                <li><a href="/index.php/Home/Function/login">登陆</a></li>
-                <!--  <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
-                      </ul>
-                  </li>-->
+                <?php if(empty($username)): ?><li><a href="/index.php/Home/Function/register">注册</a></li>
+                    <li><a href="/index.php/Home/Function/login">登陆</a></li>
+                    <?php else: ?>
+                    <li><a>你好,<?php echo ($username); ?></a></li>
+                    <li><a href="/index.php/Home/User/index">个人中心</a></li><?php endif; ?>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -54,8 +48,8 @@
 <link href="/Public/html/css/jq22.css" rel="stylesheet" type="text/css" />
   <link href="/Public/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
    <script language='javascript' src="/Public/html/js/jq22.js"></script>
-  <script type="text/javascript" src="/Public/html/js/bootstrap-select.js"></script>
-  <link rel="stylesheet" type="text/css" href="/Public/html/css/bootstrap-select.css">
+  <script type="text/javascript" src="/Public/html/dist/js/bootstrap-select.js"></script>
+  <link rel="stylesheet" type="text/css" href="/Public/html/dist/css/bootstrap-select.css">
 </head>
 <div class='body_main'> 
   <!-- start main content -->
@@ -125,13 +119,11 @@
                 <label class="tips">请使用6~20个英文字母（区分大小写）、符号或数字</label>
               </div>
 
-
-
               <div class="field-group" >
                   <label class="required title">选择标签</label>
                   <span class="control-group" >
                   <label for="tags"></label>
-                <select  id="tags" class="selectpicker" multiple data-max-options="3" name="tags[]" >
+                <select  id="tags" class="selectpicker" multiple data-max-options ="3" name="tags[]" >
                  <?php if(is_array($tags)): $i = 0; $__LIST__ = $tags;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option name="tag"  value="<?php echo ($vo["tag"]); ?>" ><?php echo ($vo["tag"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                 <!--  <option value="1">1</option>
                   <option value="2">2</option>

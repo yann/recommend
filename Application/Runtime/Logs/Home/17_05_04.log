@@ -14090,3 +14090,48 @@ ERR: 1064:You have an error in your SQL syntax; check the manual that correspond
 ERR: 1054:Unknown column 'yangyue' in 'where clause'
  [ SQL语句 ] : select count(*) num from USER where username = yangyue
 
+[ 2017-05-04T21:18:02+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:18:21+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:18:55+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:19:33+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:20:03+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:21:13+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:23:51+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:27:32+08:00 ] 127.0.0.1 /index.php/Home/User/index
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from USER where username = 杨月 AND password =
+
+[ 2017-05-04T21:27:49+08:00 ] 127.0.0.1 /index.php/Home/User/index
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from USER where username = 杨月 AND password =
+
+[ 2017-05-04T21:28:11+08:00 ] 127.0.0.1 /index.php/Home/User/index
+ERR: 1054:Unknown column '杨月' in 'where clause'
+ [ SQL语句 ] : select * from USER where username = 杨月 AND password =123456
+
+[ 2017-05-04T21:33:36+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:33:49+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:36:30+08:00 ] 127.0.0.1 /index.php/Home/User/recommend
+ERR: 非法操作:recommend
+
+[ 2017-05-04T21:38:04+08:00 ] 127.0.0.1 /index.php/Home/User/index
+ERR: 模板不存在:./Application/Home/View/User/index.html
+

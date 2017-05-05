@@ -29,18 +29,13 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/index.php/Home/Function/register">注册</a></li>
-                <li><a href="/index.php/Home/Function/login">登陆</a></li>
-              <!--  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>-->
+                <?php if(empty($username)): ?><li><a href="/index.php/Home/Function/register">注册</a></li>
+                    <li><a href="/index.php/Home/Function/login">登陆</a></li>
+                    <?php else: ?>
+                    <li><a href="/index.php/Home/Recommend">精心推荐</a></li>
+                    <li><a href="/index.php/Home/User/index">个人中心</a></li>
+                    <li><a>你好,<?php echo ($username); ?></a></li><?php endif; ?>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -48,7 +43,7 @@
 
     <div style="margin-left: 170px">
         <div class="btn-group" data-toggle="buttons">
-            <a class="btn btn-info active" href="/">
+            <a class="btn btn-info active" href="/index.php/Home/Index/tags?cat=最新">
                 <input type="checkbox" autocomplete="off" checked> 最新
             </a>
             <a class="btn btn-info" href="/index.php/Home/Index/tags?cat=热门">
@@ -78,8 +73,8 @@
             <a class="btn btn-info" href="/index.php/Home/Index/tags?cat=战争">
                 <input type="checkbox" autocomplete="off">战争
             </a>
-            <a class="btn btn-Success">
-            <input type="checkbox" autocomplete="off"> 登陆更多推荐
+            <a class="btn btn-Success" href="/index.php/Home/Recommend">
+            <input type="checkbox" autocomplete="off"> 登陆后为您精心推荐
         </a>
 
         </div>
@@ -90,16 +85,19 @@
         <div class="index_content_movie">
         <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="index_content_movie_pic" id="<?php echo ($vo["id"]); ?>">
                 <a href="/index.php/Home/Index/getDetail?id=<?php echo ($vo["id"]); ?>">
-                <img src="<?php echo ($vo["cover"]); ?>" height="210" width="160">
+                <img src="<?php echo ($vo["cover"]); ?>" height="190" width="160">
                 <div style="text-align:center">
                     <?php echo ($vo["title"]); ?>
-
                     <strong style="color: #e09015"><?php echo ($vo["rate"]); ?></strong>
                 </div>
                 </a>
             </div><?php endforeach; endif; else: echo "" ;endif; ?>
         </div>
     </div>
+</div>
+<hr>
+<div class="Pagination">
+    <?php echo ($page); ?>
 </div>
 </body>
 </html>
