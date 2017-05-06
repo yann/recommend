@@ -63,6 +63,12 @@ index
     float: left;
     line-height:24px;
 }
+.recommend_content_movie_pic{
+    margin: 10px;
+    display: inline;
+    float: left;
+    line-height:24px;
+}
 #info {
     float: right;
     word-wrap: break-word;

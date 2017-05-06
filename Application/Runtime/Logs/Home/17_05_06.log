@@ -1,0 +1,8 @@
+[ 2017-05-06T21:23:48+08:00 ] 127.0.0.1 /index.php/Home/Recommend
+ERR: 1054:Unknown column '感人' in 'where clause'
+ [ SQL语句 ] : select * FROM movie WHERE category = 感人 ORDER BY rate DESC LIMIT 2
+
+[ 2017-05-06T22:24:17+08:00 ] 127.0.0.1 /index.php/Home/Index/getDetail?id=24227
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select brief from movie_brief where douban_id = 
+

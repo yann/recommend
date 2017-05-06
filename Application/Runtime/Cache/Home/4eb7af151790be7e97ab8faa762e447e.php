@@ -92,6 +92,7 @@
     </div>
     <div  style="float:left ;  width:50%; height:100%;margin-top: 30px">
         <div id="info">
+            <div>
             <h1>
                 <span><?php echo ($vo["title"]); ?></span>
                 <span class="year">(2017)</span>
@@ -135,8 +136,10 @@
                     </span>
                 <br/>
             </div>
-        </div>
+        </div></div>
+        <div style="margin: 20px"><button type="button" class="btn btn-danger">我来评分</button></div>
     </div>
+
 
         <div>
         <div id="brief">

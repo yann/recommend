@@ -70,4 +70,12 @@
                 return $res;
             }
 
+
+            public function getTwentyMovieByCat($cat){
+                $cat = "'".$cat."'";
+                $sql = "select  id,title,rate,cover FROM movie WHERE category = $cat ORDER BY rate DESC LIMIT 2";
+                $res = $this->query($sql);
+                return $res;
+            }
+
         }
