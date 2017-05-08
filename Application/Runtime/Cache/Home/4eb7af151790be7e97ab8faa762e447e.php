@@ -5,6 +5,7 @@
 <link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="/Public/bootstrap/js/bootstrap.js" rel="stylesheet"/>
     <link href="/Public/html/css/index.css" rel="stylesheet">
+<!--    <script src="/Public/html/js/jquery2.0.min.js"></script>-->
     <body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -80,10 +81,15 @@
         </div>
     </div>
     <hr>
-
+<script src="/Public/html/js/jquery2.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Public/html/SweetAlert2/dist/sweetalert2.min.css">
+<script src="/Public/html/SweetAlert2/dist/sweetalert2.min.js"></script>
+<!-- for IE support -->
+<script src="/Public/html/SweetAlert2/lib/es6-promise.min.js"></script>
 <div style="width:1000px;  height:300px ;margin-left: 100px">
     <?php if(is_array($detail)): $i = 0; $__LIST__ = $detail;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div style="float:left ;  width:50%;  height:100%;text-align: center">
             <div id="<?php echo ($vo["id"]); ?>" style="width: 200px;margin-left: 200px;margin-top: 30px">
+                <input type="hidden" value="<?php echo ($vo["id"]); ?>" id="movie_id">
                 <img src="<?php echo ($vo["cover"]); ?>" height="210" width="160">
                 <div >
                     <strong style="color: #e09015">评分：<?php echo ($vo["rate"]); ?></strong>
@@ -137,7 +143,7 @@
                 <br/>
             </div>
         </div></div>
-        <div style="margin: 20px"><button type="button" class="btn btn-danger">我来评分</button></div>
+        <div style="margin : 20px"><button id="score" class="btn btn-danger">我来评分</button></div>
     </div>
 
 
@@ -152,6 +158,62 @@
         </div>
         </div><?php endforeach; endif; else: echo "" ;endif; ?>
 </div>
-</div>
+<!-- Modal -->
+
+
+
+
 </body>
 </html>
+
+<script>
+    $(function () {
+        $("#score").click(function () {
+            var id =  $("#movie_id").val();
+            $.post(
+                "/index.php/Home/Recommend/check",
+                {"movie_id" : id},
+                function (data){
+                   if (data.code == 'error'){
+                       swal('Oops...', '请先登录!', 'error');
+                   }
+                   else{
+                       swal({
+                           title: '请输入您的评分',
+                           input: 'text',
+                           confirmButtonText: '确定',
+                           cancelButtonText:  '取消',
+                      /*     showCancelButton: true,*/
+                           confirmButtonColor: '#4cd964',
+                           cancelButtonColor: 'gray',
+                           inputValidator: function(value) {
+                               return new Promise(function(resolve, reject) {
+                                   if(value) {
+                                       if (value > 10 || value < 0) {
+                                           reject('请输0-10的评分！');
+                                       }
+                                       else {
+                                           resolve();
+                                       }
+                                   } else {
+                                       reject('至少要输入一个数值！');
+                                   }
+                               });
+                           }
+                       }).then(function(result) {
+                           $.post("/index.php/Home/Recommend/score",
+                               {"movie_id" : id,"score":result},function (res) {
+                                      swal({
+                                          title : res.msg
+                                 }).then(function () {
+                                          window.location.href="/index.php/Home/Recommend/index";
+                                      });
+                                      
+                               },'Json');
+                       });
+                   }
+                },"Json"
+            )
+        })
+    })
+</script>

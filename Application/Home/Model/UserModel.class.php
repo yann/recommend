@@ -70,6 +70,9 @@ use Think\Model;
 
         }
 
-
-
+        public function getUserIdByName($username){
+            $username = "'".$username."'";
+            $sql = "select id,username from user WHERE username = $username";
+          return  $this->query($sql);
+        }
     }

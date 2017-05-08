@@ -63,6 +63,10 @@
                 return $res;
             }
 
+            public function getTitleById($id){
+                $res = $this->query("select id,title from movie where id=$id");
+                return $res;
+            }
 
             public function search($word){
                 $sql = "select id,title,rate,cover from movie WHERE title like"."'%{$word}%'";
@@ -71,9 +75,15 @@
             }
 
 
-            public function getTwentyMovieByCat($cat){
+     /**
+      * @param $cat
+      * @return mixed
+      * 联合 user_score 查询
+      *
+      */
+            public function getTwentyMovieByCat($cat,$ids){
                 $cat = "'".$cat."'";
-                $sql = "select  id,title,rate,cover FROM movie WHERE category = $cat ORDER BY rate DESC LIMIT 2";
+                $sql = "select  id,title,rate,cover FROM movie WHERE id not in ($ids)  and category = $cat  ORDER BY rate DESC LIMIT 2";
                 $res = $this->query($sql);
                 return $res;
             }

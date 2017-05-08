@@ -5,6 +5,7 @@
 <link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="/Public/bootstrap/js/bootstrap.js" rel="stylesheet"/>
     <link href="/Public/html/css/index.css" rel="stylesheet">
+<!--    <script src="/Public/html/js/jquery2.0.min.js"></script>-->
     <body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
