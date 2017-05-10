@@ -40,8 +40,9 @@ class FunctionController extends Controller{
         $result['age'] = $data['age'];
         $result['password'] = $data['password'];
         $result['tag'] = implode(',',$data['tags']);
-
         $user_model = new Model\UserModel();
+        $user_taste_value = new  Model\UserTasteValueModel();
+
         $user_flag =$user_model->checkUsername($result['username']);
         if ($user_flag){
             $this->success('用户名已存在,请重新输入！', '/index.php/Home/Function/register',3);
@@ -53,9 +54,9 @@ class FunctionController extends Controller{
             $this->success('邮箱已存在,请重新输入!', '/index.php/Home/Function/register',3);
             exit;
         }
-
        $res =  $user_model->register($result);
         if ($res){
+            $utv_flag = $user_taste_value ->addValue($data,$res);  //注册插入用户兴趣值
             $this->success('注册成功', '/index.php/Home/Function/login',3);
         }else{
             $this->success('注册失败', '/index.php/Home/Function/register',3);

@@ -30,19 +30,30 @@ class IndexController extends Controller
      */
     public function getdetail()
     {
+        $username = session('username');
         $movie_model = new Model\MovieModel();
         $movie_brief_model = new Model\MovieBriefModel();
-        $username = session('username');
-        $this->assign('username',$username);
+        $user_score_model = new Model\UserScoreModel();
+        $user_model = new Model\UserModel();
+        if (!empty($username)) {
+            $result = $user_model->getUserIdByName($username);
+            $user_id = $result[0]['id'];
+            $this->assign('username', $username);
+            $score = $user_score_model->getScore($user_id, $_GET['id']);
+            if ($score){
+                $this ->assign("score",$score);
+            }
+        }
             if (empty($_GET['id'])) {
                 $this->error("请选择详细的电影", '/');
             } else {
                 $res = $movie_model->getDetailByid($_GET['id']);
+                $res[0]['cover'] = "/Public/html/img/".basename($res[0] ['cover']);
                 $res[0]['time'] = date('Y-m-d',strtotime($res[0]['time']));
+             
                 $this->assign("detail", $res);
                 $douban_id = $movie_model->getDoubanIdById($_GET['id'])[0]['douban_id'];
                 $brief = $movie_brief_model->getMovieBriefById($douban_id)[0]['brief'];
-
                 $this->assign("brief", $brief);
             $this->display();
         }

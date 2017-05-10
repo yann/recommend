@@ -64,7 +64,7 @@
             }
 
             public function getTitleById($id){
-                $res = $this->query("select id,title from movie where id=$id");
+                $res = $this->query("select id,title,style from movie where id=$id");
                 return $res;
             }
 
@@ -86,6 +86,19 @@
                 $sql = "select  id,title,rate,cover FROM movie WHERE id not in ($ids)  and category = $cat  ORDER BY rate DESC LIMIT 2";
                 $res = $this->query($sql);
                 return $res;
+            }
+
+
+            public function getMovieByStyle($style){
+                $style = "'".$style."'";
+                $sql = "select id,style from movie where style LIKE style";
+               $res =  $this->query($sql);
+               return $res;
+            }
+
+            public function getMovieIdAndStyle($ids){
+                $sql = "select id,style from movie WHERE  id not in ($ids)";
+                return $this -> query($sql);
             }
 
         }

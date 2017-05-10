@@ -38,15 +38,19 @@ use Home\Model;
          $result['sex'] = $data['sex'];
          $result['age'] = $data['age'];
          $result['id'] = $data['id'];
+
          $user_model = new Model\UserModel();
+         $user_taste_value_model = new Model\UserTasteValueModel();
          $res =  $user_model->update($result);
          if ($res){
-             $this->success("修改成功","/index.php/Home/User/index");
+             $flag = $user_taste_value_model -> deleteAll($result['id']);
+             if ($flag){
+                 $user_taste_value_model -> truncate();
+             }
+             $user_taste_value_model -> addValue($data,$data['id']);
+             $this -> success("修改成功","/index.php/Home/User/index");
          }else{
-             $this->success("修改失败","/index.php/Home/User/index");
+             $this -> success("修改失败","/index.php/Home/User/index");
          }
      }
-
-
-
  }

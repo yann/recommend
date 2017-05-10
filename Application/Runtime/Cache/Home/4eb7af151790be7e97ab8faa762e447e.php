@@ -143,7 +143,10 @@
                 <br/>
             </div>
         </div></div>
-        <div style="margin : 20px"><button id="score" class="btn btn-danger">我来评分</button></div>
+
+            <?php if(empty($score)): ?><div style="margin : 20px"><button id="score" class="btn btn-danger">我来评分</button></div>
+                <?php else: ?>
+                <div style="margin : 20px"><button  class="btn btn-danger">我的评分:<?php echo ($score); ?></button></div><?php endif; ?>
     </div>
 
 

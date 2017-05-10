@@ -20,7 +20,8 @@ use Think\Model;
             $age = "'".$res["age"]."'";
              $sql = "insert into `user`(`id`,`username`,`password`,email,tag,age,sex)VALUES(NULL,$username,$password,$email,$tag,$age,$sex)";
              $res = $this->execute($sql);
-             return $res;
+             $num = $this->getLastInsID();
+             return $num;
            // //$this->data($res)->add();
         }
         public function checkUsername($res){
@@ -57,7 +58,7 @@ use Think\Model;
         }
 
         public function update($data){
-       $username = "'".$data['username']."'";
+            $username = "'".$data['username']."'";
             $password = "'".$data['password']."'";
             $email = "'".$data['email']."'";
             $id = $data['id'];

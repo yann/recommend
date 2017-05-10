@@ -62,7 +62,13 @@
                 <br/>
             </div>
         </div></div>
-        <div style="margin : 20px"><button id="score" class="btn btn-danger">我来评分</button></div>
+
+            <empty name="score">
+                <div style="margin : 20px"><button id="score" class="btn btn-danger">我来评分</button></div>
+                <else/>
+                <div style="margin : 20px"><button  class="btn btn-danger">我的评分:<{$score}></button></div>
+
+            </empty>
     </div>
 
 

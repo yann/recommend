@@ -14,7 +14,8 @@
                 $user_name = "'".$res["user_name"]."'";
                 $user_id = "'".$res["user_id"]."'";
                 $score =  "'".$res["score"]."'";
-                $sql = "insert into `user_score`(`id`,user_id,user_name,movie_id,movie_name,score)VALUES(NULL,$user_id,$user_name,$movie_id,$movie_name,$score)";
+                $movie_style = "'" . $res['movie_style']."'";
+                $sql = "insert into `user_score`(`id`,user_id,user_name,movie_id,movie_name,score,movie_style)VALUES(NULL,$user_id,$user_name,$movie_id,$movie_name,$score,$movie_style)";
                 $res = $this->execute($sql);
                 return $res;
             }
@@ -37,5 +38,12 @@
                 }
                 return $ids;
             }
+
+            public function getScore($user_id,$movie_id){
+                $sql = "select score from user_score WHERE  user_id = $user_id AND movie_id = $movie_id";
+                $res = $this ->query($sql);
+                return $res[0]['score'];
+            }
+
 
         }
