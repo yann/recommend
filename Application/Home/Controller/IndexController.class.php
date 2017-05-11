@@ -112,4 +112,10 @@ class IndexController extends Controller
         $this->assign("data",$result);
         $this->display('index');
     }
+
+
+    public function destroy(){
+        session(null);
+        $this->success('退出成功','/',2);
+    }
 }

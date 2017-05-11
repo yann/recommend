@@ -75,6 +75,13 @@
             }
 
 
+            public function getMovieByIds($ids){
+                $sql = "select id,title,rate,cover from movie WHERE id in ($ids)";
+                $res = $this->query($sql);
+                return $res;
+            }
+
+
      /**
       * @param $cat
       * @return mixed
@@ -97,8 +104,11 @@
             }
 
             public function getMovieIdAndStyle($ids){
-                $sql = "select id,style from movie WHERE  id not in ($ids)";
+                if (empty($ids)){
+                    $sql = "select id,style,rate from movie";
+                }else {
+                    $sql = "select id,style,rate from movie WHERE  id not in ($ids)";
+                }
                 return $this -> query($sql);
             }
-
         }

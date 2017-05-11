@@ -15,23 +15,7 @@
             if (empty($username)){
                 $this->error("请先登录","/index.php/Home/Function/login");
             }
-
-         /*   foreach ( $tags as $key=>$value) {
-               $movie[] = $movie_model->getTwentyMovieByCat($value,$ids);
-            }
-            foreach ($movie as $k=>$v){
-               foreach ($v as $k1=>$v1)
-               {
-                   $temp['id'] = $v1['id'];
-                   $temp['title'] = $v1['title'];
-                   $temp['rate'] = $v1['rate'];
-                   $temp['cover'] = "/Public/html/img/".basename($v1['cover']);
-                   $movie_betal[] = $temp;
-               }
-            }*/
-
             $movie_betal =  $this->core();
-            exit;
             $this->assign('username',$username);
             $this->assign("data",$movie_betal);
             $this->display();
@@ -46,6 +30,11 @@
                 echo json_encode(array('code'=>"success"));
             }
         }
+
+        /**
+         *
+         *  评分
+         */
         public function score(){
             $username = session('username');
             $movie_id = $_POST['movie_id'];
@@ -67,14 +56,26 @@
             }else{
                 $flag = $user_score_model->insert($result);
                 if ($flag){
+                    $this->changeTasteValue($result);
                    echo  json_encode(array("code" => 'success','msg' => '评分成功' ));
                 }else{
                    echo  json_encode(array("code" => 'error','msg' => '评分失败' ));
                 }
             }
         }
+
+
+        /**
+         * @return array
+         *
+         * 操作用户兴趣值这个表，取出计算后得分最高的8部分电影，推荐
+         */
         public function core(){
             $movie = [];
+            $last_ids_arr = [];
+            $rate = [];
+            $m_id = [];
+            $last_movie_brief = [];
             $movie_model = new  Model\MovieModel();
             $user_score_model = new  Model\UserScoreModel();
             $user_taste_value_model = new Model\UserTasteValueModel();
@@ -89,22 +90,90 @@
 
             // 查询出 未评分过所有电影，并通过兴趣值标签对电影排序输出。
             $result = $movie_model ->getMovieIdAndStyle($ids);
+            $taste_value = $user_taste_value_model->getTasteValue($username);
+
            foreach ( $result as $k => $v){
                 $temp['id'] = $v['id'];
+                $temp['rate'] = $v['rate'];
                 $temp['style'] = explode('/',$v['style']);
                 $temp['score'] = 0 ;
                 foreach ( $temp['style'] as $kt => $vt){
                     foreach ( $tags as $ktag => $vtag){
                         if (trim($vt) == trim($vtag)){
-                            $temp['score'] = $temp['score'] + 10;
+                            $temp['score'] = $temp['score'] + $taste_value[trim($vtag)];
                         }
                     }
                }
                if ($temp['score'] > 0) {
                    $movie[] = $temp;
+                   $score[$k] = $temp['score'];
+                   $m_id[$k] = $temp['id'];
+                   $rate[$k] = $temp['rate'];
                }
             }
+         // print_r($movie);exit;
+            // 按分数排序，还有rate，取出前10部，
+            array_multisort($score,SORT_NUMERIC,SORT_DESC,$rate,SORT_STRING,SORT_DESC,$movie);
 
-            print_r($movie);
+            $arr = array_slice($movie,0,8);
+
+            foreach ($arr as $ka => $va){
+                $last_ids_arr[] = $va['id'];
+            }
+            $last_ids_str = implode(',',$last_ids_arr);
+            $temp_movie_brief = $movie_model-> getMovieByIds($last_ids_str);
+
+
+
+            foreach ($temp_movie_brief as $ktmb => $vtmb){
+                $tmp['id'] = $vtmb['id'];
+                $tmp['title'] = $vtmb['title'];
+                $tmp['rate'] = $vtmb['rate'];
+                $tmp['cover'] = "/Public/html/img/".basename($vtmb['cover']);
+                $last_movie_brief[] = $tmp;
+            }
+
+           return $last_movie_brief;
         }
+
+
+
+
+        public function changeTasteValue($result){
+            $user_taste_value_model = new Model\UserTasteValueModel();
+            $data['user_id'] = $result['user_id'];
+            $data['user_name'] = $result['user_name'];
+            $data['score'] = $result['score'];
+            $tags = explode('/',$result['movie_style']);
+            $score = $result['score'];
+            foreach ( $tags as $key => $value){
+                $data['tags'] = trim($value);
+                $flag = $user_taste_value_model ->checkExist($data);
+                if ($flag){
+                    $last_tags_taste_value  = $flag; //初使兴趣值
+                    $data['tags_taste_value'] = $this->calculateTasteValue($last_tags_taste_value,$score);
+                    //更新兴趣值
+                    $res = $user_taste_value_model ->change($data);
+                }
+                else{
+                    $last_tags_taste_value = 0;   //初使值为兴趣值0
+                    $data['tags_taste_value'] = $this->calculateTasteValue($last_tags_taste_value,$score);
+                    //插入兴趣值
+                    $res = $user_taste_value_model->add_new($data);
+                }
+            }
+        }
+
+        public function calculateTasteValue($last,$score){
+               $now = $last - 0.1*($last - $score);
+
+               if ($now>10){
+                   $now = 10;
+               }
+               if ($now < 0){
+                   $now = 0;
+               }
+              return $now;
+        }
+
     }

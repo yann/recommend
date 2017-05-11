@@ -42,9 +42,10 @@
                 <?php if(empty($username)): ?><li><a href="/index.php/Home/Function/register">注册</a></li>
                     <li><a href="/index.php/Home/Function/login">登陆</a></li>
                     <?php else: ?>
+                    <li><a>你好,<?php echo ($username); ?></a></li>
                     <li><a href="/index.php/Home/Recommend">精心推荐</a></li>
                     <li><a href="/index.php/Home/User/index">个人中心</a></li>
-                    <li><a>你好,<?php echo ($username); ?></a></li><?php endif; ?>
+                    <li><a href="/index.php/Home/Index/destroy">退出</a></li><?php endif; ?>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -64,8 +65,8 @@
         <input type="hidden" name="token" value="<?php echo ($token); ?>">
         <h3>用户登入</h3>
         <img class="avator" src="/Public/html/image/avatar.jpg" width="96" height="96"/>
-       <input type="text" name="username" style="width:215px;" placeholder="邮箱/名称" />
-       <input type="password" name="password"  placeholder="密码" style="width:215px;"/>
+       <input type="text" name="username" style="width:215px;color: red" placeholder="邮箱/名称" />
+       <input type="password" name="password"  placeholder="密码" style="width:215px;color: red"/>
         <!--<button type="button">登入</button>-->
         <input type="submit" id="button" value="登录" style="width: 215px">
     </form>

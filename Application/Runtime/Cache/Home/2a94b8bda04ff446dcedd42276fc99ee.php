@@ -33,9 +33,10 @@
                 <?php if(empty($username)): ?><li><a href="/index.php/Home/Function/register">注册</a></li>
                     <li><a href="/index.php/Home/Function/login">登陆</a></li>
                     <?php else: ?>
+                    <li><a>你好,<?php echo ($username); ?></a></li>
                     <li><a href="/index.php/Home/Recommend">精心推荐</a></li>
                     <li><a href="/index.php/Home/User/index">个人中心</a></li>
-                    <li><a>你好,<?php echo ($username); ?></a></li><?php endif; ?>
+                    <li><a href="/index.php/Home/Index/destroy">退出</a></li><?php endif; ?>
 
             </ul>
         </div><!-- /.navbar-collapse -->
