@@ -1,4 +1,4 @@
-
+<?php if (!defined('THINK_PATH')) exit();?>
 <html>
 <head>
     <title>时光电影推荐网</title>
@@ -31,29 +31,45 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-               <!-- <empty name="username">
-                    <li><a href="/index.php/Home/Function/register">注册</a></li>
+               <!-- <?php if(empty($username)): ?><li><a href="/index.php/Home/Function/register">注册</a></li>
                     <li><a href="/index.php/Home/Function/login">登陆</a></li>
-                    <else/>
-                    <li><a>你好,<{$username}></a></li>
-                    <li><a href="/index.php/Home/User/index">个人中心</a></li>
-                </empty>
+                    <?php else: ?>
+                    <li><a>你好,<?php echo ($username); ?></a></li>
+                    <li><a href="/index.php/Home/User/index">个人中心</a></li><?php endif; ?>
 
 -->
 
-                <empty name="username">
-                    <li><a href="/index.php/Home/Function/register">注册</a></li>
+                <?php if(empty($username)): ?><li><a href="/index.php/Home/Function/register">注册</a></li>
                     <li><a href="/index.php/Home/Function/login">登陆</a></li>
-                    <else/>
-                    <li><a>你好,<{$username}></a></li>
+                    <?php else: ?>
+                    <li><a>你好,<?php echo ($username); ?></a></li>
                     <li><a href="/index.php/Home/Recommend">精心推荐</a></li>
                     <li><a href="/index.php/Home/User/index">信息设置</a></li>
                     <li><a href="/index.php/Home/History/index">个人记录</a></li>
-                    <li><a href="/index.php/Home/Index/destroy">退出</a></li>
-                </empty>
+                    <li><a href="/index.php/Home/Index/destroy">退出</a></li><?php endif; ?>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
 <hr>
+<p><button type="button" class="btn btn-success">正在为您精心推荐：</button></p>
+
+<div class="center-block">
+    <div class="index_content">
+        <div class="index_content_movie">
+            <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="index_content_movie_pic" id="<?php echo ($vo["id"]); ?>">
+                    <a href="/index.php/Home/Index/getDetail?id=<?php echo ($vo["id"]); ?>">
+                        <img src="<?php echo ($vo["cover"]); ?>" height="200" width="160">
+                        <div style="text-align:center">
+                            <?php echo ($vo["title"]); ?>
+                          <!--  <strong style="color: #e09015"><?php echo ($vo["rate"]); ?></strong>-->
+                        </div>
+                    </a>
+                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

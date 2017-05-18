@@ -45,5 +45,11 @@
                 return $res[0]['score'];
             }
 
+            public function getInfoByName($username){
+                $username = "'". $username . "'";
+                $sql = "select movie_name,score,movie_style from user_score WHERE  user_name = $username";
+                $res = $this->query($sql);
+                return $res;
+            }
 
         }

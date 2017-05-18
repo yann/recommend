@@ -70,5 +70,12 @@ use Think\Model;
             }
             return $temp;
         }
+        public function getInfo($username){
+            $temp = [];
+            $user_name = "'".$username."'";
+            $sql = "select user_name,tags,tags_taste_value value from user_taste_value WHERE user_name = $user_name";
+            $res = $this ->query($sql);
+            return $res;
+        }
 
     }
