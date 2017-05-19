@@ -111,4 +111,47 @@
                 }
                 return $this -> query($sql);
             }
+
+
+
+            public function update($data){
+                $id = $data['id'];
+                $title = "'".$data['title']."'";
+                $director = "'".$data['director']."'";
+                $actor = "'".$data['actor']."'";
+                $style = "'".$data['style']."'";
+                $country = "'".$data['country']."'";
+                $time = date('ymd',strtotime($data['time']));
+                $sql  = "update movie set title = $title , director = $director , actor = $actor , style = $style ,country = $country , time = $time WHERE  id = $id";
+                $res = $this->execute($sql);
+                return $res;
+            }
+
+            public function deleteById($id){
+                $sql = "delete from movie WHERE  id= $id";
+               return $this->execute($sql);
+            }
+
+            public function add_movie($data){
+                $title = "'".$data['title']."'";
+                $category = "'".$data['category']."'";
+                $douban_id = $data['douban_id'];
+                $rate = $data['rate'];
+                $is_new = $data['is_new'];
+                $director = "'".$data['director']."'";
+                $actor = "'".$data['actor']."'";
+                $style = "'".$data['style']."'";
+                $country = "'".$data['country']."'";
+                $time = "'".$data['time']."'";
+                $cover = $data['cover'];
+                $url = $data['url'];
+                $ctime = "'".$data['ctime']."'";
+                $id = 'NULL';
+
+                $sql = "insert into movie(id,title,category,douban_id,rate,is_new,director,actor,style,country,time,cover,url,ctime) 
+                VALUES($id,$title,$category,$douban_id,$rate,$is_new,$director,$actor,$style,$country,$time,$cover,$url,$ctime)";
+                $this->execute($sql);
+                return $this->getLastInsID();
+            }
+
         }
